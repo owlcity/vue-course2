@@ -1,8 +1,9 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/img/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
 
+    <div>{{food}}</div>
     <div>
       <button @click="handleClick('back')">返回上一页</button>
     </div>
@@ -17,12 +18,30 @@
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+// import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
   name: 'Home',
+  props: {
+    food: {
+      type: String,
+      default: 'apple'
+    }
+  },
+  beforeRouteEnter: (to, from, next) => {
+    // if (from.name === 'About') next()
+    // else next(false)
+    next(vm => {
+      // console.log(vm)
+    })
+  },
+  // beforeRouteLeave: (to, from, next) => {
+  //   const leave = confirm('确认要离开')
+  //   if (leave) next()
+  //   else next(false)
+  // },
   components: {
-    HelloWorld
+    // HelloWorld
   },
   methods: {
     handleClick (type) {
