@@ -58,6 +58,10 @@ const routes = [{
     tel: () => import('@/views/tel.vue'),
     email: () => import('@/views/email.vue')
   }
+},
+{
+  path: '/store',
+  component: () => import('@/views/store.vue')
 }, {
   // 路由重定向的三种方式
   path: '/main',
