@@ -15,6 +15,7 @@ export default {
   },
   mounted () {
     this.$bus.$on('on-click', (msg) => {
+      console.log(this)
       this.message = msg
     })
   }
