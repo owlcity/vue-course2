@@ -10,15 +10,22 @@ const getters = {
 }
 
 const mutations = {
-
+  SET_USER_NAME (state, params) {
+    state.userName = params
+  }
 }
 
 const actions = {
+  updateUserName ({ commit, state, rootState, dispatch }) {
+    dispatch('xxx', '')
+  },
+  xxx () {
 
+  }
 }
 
 export default {
-  namespaced: true,
+  // namespaced: true,
   state,
   getters,
   mutations,
