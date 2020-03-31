@@ -4,9 +4,14 @@
     <!-- <a-input v-model="stateValue"> </a-input> -->
     <!-- v-model语法糖可以理解为 1 -->
     <!-- <a-input :value="stateValue" @input="handleInput"></a-input> -->
-    <a-input @input="handleInput"></a-input>
+    <!-- <a-input @input="handleInput"></a-input> -->
+    <!-- 1 vuex双向绑定 -->
+    <!-- <a-input :value="stateValue" @input="handleInputStateValue"></a-input> -->
+    <!-- 2 vuex双向绑定 -->
+    <a-input v-model="stateValue"></a-input>
+
     <p>{{inputValue}} -> last-letter is {{inputValueLastLetter}}</p>
-    <h3>{{stateValue}}</h3>
+    <h3>stateValue: {{stateValue}}</h3>
 
     <h2>appName => {{appName}} appNameWithVersion-> {{appNameWithVersion}}</h2>
 
@@ -38,7 +43,6 @@ export default {
   },
   data () {
     return {
-      stateValue: '',
       inputValue: ''
     }
   },
@@ -66,7 +70,16 @@ export default {
       userName: state => state.user.userName,
       appVersion: state => state.appVersion,
       todoList: state => state.user.todo ? state.user.todo.todoList : []
+      // stateValue: state => state.stateValue
     }),
+    stateValue: {
+      get () {
+        return this.$store.state.stateValue
+      },
+      set (value) {
+        this.SET_STATE_VALUE(value)
+      }
+    },
     // ...mapState('user', {
     //   userName: state => state.userName
     // }),
@@ -85,7 +98,7 @@ export default {
     }
   },
   mounted () {
-
+    console.log(this.$store.state)
   },
   methods: {
     // <!-- v-model语法糖可以理解为 2 -->
@@ -93,10 +106,14 @@ export default {
       // this.stateValue = value
       this.inputValue = value
     },
+    handleInputStateValue (value) {
+      this.SET_STATE_VALUE(value)
+    },
     ...mapMutations([
       'SET_APP_NAME',
       'SET_APP_VERSION',
-      'SET_USER_NAME'
+      'SET_USER_NAME',
+      'SET_STATE_VALUE'
     ]),
     ...mapActions([
       'updateAppName'

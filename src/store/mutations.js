@@ -6,8 +6,11 @@ const mutations = {
   // 添加新的state
   SET_APP_VERSION (state) {
     vue.set(state, 'appVersion', 'V2.0')
-  }
+  },
 
+  SET_STATE_VALUE (state, value) {
+    state.stateValue = value
+  }
 }
 
 export default mutations
